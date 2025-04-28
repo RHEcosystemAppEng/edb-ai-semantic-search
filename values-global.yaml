@@ -1,6 +1,6 @@
 ---
 global:
-  pattern: rag-llm-gitops
+  pattern: edb-ai-symantic-search
   options:
     useCSV: false
     syncPolicy: Automatic
