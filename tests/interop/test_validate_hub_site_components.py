@@ -42,6 +42,7 @@ def test_validate_hub_site_reachable(kube_config, openshift_dyn_client):
 
 
 @pytest.mark.check_pod_status_hub
+@pytest.disable()
 def test_check_pod_status(openshift_dyn_client):
     logger.info("Checking pod status")
     projects = ["nvidia-gpu-operator", "rag-llm"]
@@ -54,6 +55,7 @@ def test_check_pod_status(openshift_dyn_client):
 
 
 @pytest.mark.check_pod_count_hub
+@pytest.disable()
 def test_check_pod_count_hub(openshift_dyn_client):
     logger.info("Checking pod count")
     projects = {"rag-llm": 4}
@@ -92,6 +94,7 @@ def test_validate_argocd_reachable_hub_site(openshift_dyn_client):
 
 
 @pytest.mark.validate_llm_ui_route
+@pytest.disable()
 def test_validate_llm_ui_route(openshift_dyn_client):
     namespace = "rag-llm"
     logger.info("Check for the existence of the llm-ui route")
@@ -129,7 +132,7 @@ def test_validate_nodefeaturediscovery():
 
 @pytest.mark.validate_gpu_clusterpolicy
 def test_validate_gpu_clusterpolicy():
-    name = "rag-llm-gpu-cluster-policy"
+    name = "edb-aidb-gpu-cluster-policy"
     tolerations = (
         '"tolerations":[{"effect":"NoSchedule","key":"odh-notebook","value":"true"}]'
     )
@@ -154,7 +157,7 @@ def test_validate_gpu_clusterpolicy():
 @pytest.mark.validate_argocd_applications_health_hub_site
 def test_validate_argocd_applications_health_hub_site(openshift_dyn_client):
     logger.info("Get all applications deployed by argocd on hub site")
-    projects = ["openshift-gitops", "rag-llm-gitops-hub"]
+    projects = ["openshift-gitops", "edb-aidb-gitops-hub"]
     unhealthy_apps = application.get_argocd_application_status(
         openshift_dyn_client, projects
     )

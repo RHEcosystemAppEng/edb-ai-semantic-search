@@ -1,4 +1,4 @@
-# Document Generation Demo with LLM and RAG
+# OPENSHIFT AI AND EDB-AIDB DEMO
 
 ## Introduction
 
@@ -18,7 +18,7 @@ OpenShift to generate project proposals for specific Red Hat products.
 - Podman
 - Red Hat Openshift cluster running in AWS. Supported regions are : us-east-1 us-east-2 us-west-1 us-west-2 ca-central-1 sa-east-1 eu-west-1 eu-west-2 eu-west-3 eu-central-1 eu-north-1 ap-northeast-1 ap-northeast-2 ap-northeast-3 ap-southeast-1 ap-southeast-2 ap-south-1.
 - GPU Node to run Hugging Face Text Generation Inference server on Red Hat OpenShift cluster.
-- Create a fork of the [rag-llm-gitops](https://github.com/validatedpatterns/rag-llm-gitops.git) Git repository.
+- Create a fork of the [edb-aidb-gitops](https://github.com/validatedpatterns/edb-aidb-gitops.git) Git repository.
 
 ## Demo Description & Architecture
 
@@ -86,7 +86,7 @@ _Figure 6. Proposed demo architecture with OpenShift AI_
 
 ## Deploying the demo
 
-To run the demo, ensure the Podman is running on your machine.Fork the [rag-llm-gitops](https://github.com/validatedpatterns/rag-llm-gitops) repository into your organization
+To run the demo, ensure the Podman is running on your machine.Fork the [edb-aidb-gitops](https://github.com/validatedpatterns/edb-aidb-gitops) repository into your organization
 
 ### Login to OpenShift cluster
 
@@ -99,8 +99,8 @@ oc login --token=<token> --server=<api_server_url> # login to Openshift cluster
 ### Cloning repository
 
 ```sh
-git clone https://github.com/<<your-username>>/rag-llm-gitops.git
-cd rag-llm-gitops
+git clone https://github.com/<<your-username>>/edb-aidb-gitops.git
+cd edb-aidb-gitops
 ```
 
 ### Configuring model
@@ -108,13 +108,13 @@ cd rag-llm-gitops
 This pattern deploys [IBM Granite 3.1-8B-Instruct](https://huggingface.co/ibm-granite/granite-3.1-8b-instruct) out of box. Run the following command to configure vault with the model ID.
 
 ```sh
-# Copy values-secret.yaml.template to ~/values-secret-rag-llm-gitops.yaml.
+# Copy values-secret.yaml.template to ~/values-secret-edb-aidb-gitops.yaml.
 # You should never check-in these files
 # Add secrets to the values-secret.yaml that needs to be added to the vault.
-cp values-secret.yaml.template ~/values-secret-rag-llm-gitops.yaml
+cp values-secret.yaml.template ~/values-secret-edb-aidb-gitops.yaml
 ```
 
-To deploy a model that can requires an Hugging Face token, grab the [Hugging Face token](https://huggingface.co/settings/tokens) and accept the terms and conditions on the model page. Edit ~/values-secret-rag-llm-gitops.yaml to replace the `model Id` and the `Hugging Face` token.
+To deploy a model that can requires an Hugging Face token, grab the [Hugging Face token](https://huggingface.co/settings/tokens) and accept the terms and conditions on the model page. Edit ~/values-secret-edb-aidb-gitops.yaml to replace the `model Id` and the `Hugging Face` token.
 
 ```sh
 secrets:
@@ -156,7 +156,7 @@ Alternatiely, follow the [instructions](./GPU_provisioning.md) to manually insta
 ```yaml
 ---
 global:
-  pattern: rag-llm-gitops
+  pattern: edb-aidb-gitops
   options:
     useCSV: false
     syncPolicy: Automatic

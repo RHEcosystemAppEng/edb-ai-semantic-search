@@ -11,7 +11,7 @@ metadata:
 subjects:
 - kind: ServiceAccount
   name: demo-setup
-  namespace: rag-llm
+  namespace: edb-ai-semantic-search
 roleRef:
   kind: ClusterRole
   name: cluster-reader
@@ -217,7 +217,7 @@ spec:
 #                   secure=False
 #               )
 #               bucket = 'models'
-              
+
 #               print('creating models bucket')
 #               if client.bucket_exists(bucket):
 #                 print("bucket 'models' exists")

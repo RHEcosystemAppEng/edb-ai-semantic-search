@@ -7,30 +7,17 @@ clusterGroup:
   name: group-one
   isHubCluster: false
   namespaces:
-    - rag-llm
+    - edb-ai-semantic-search
     - golang-external-secrets
   subscriptions:
   projects:
     - eso
-    - rag-llm
-    - llm-monitoring
   applications:
     golang-external-secrets:
       name: golang-external-secrets
       namespace: golang-external-secrets
       project: eso
       path: common/golang-external-secrets
-    rag-llm:
-      name: rag-llm
-      namespace: rag-llm
-      project: rag-llm
-      path: charts/all/rag-llm
-    llm-monitoring:
-      name: llm-monitoring
-      namespace: llm-monitoring
-      project: llm-monitoring
-      kustomize: true
-      path: charts/all/llm-monitoring/kustomize/overlays/dev
   imperative:
     # NOTE: We *must* use lists and not hashes. As hashes lose ordering once parsed by helm
     # The default schedule is every 10 minutes: imperative.schedule

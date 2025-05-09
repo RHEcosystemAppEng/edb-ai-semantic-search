@@ -1,6 +1,6 @@
 ---
 global:
-  pattern: edb-ai-symantic-search
+  pattern: edb-ai-semantic-search
   options:
     useCSV: false
     syncPolicy: Automatic

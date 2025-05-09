@@ -1,4 +1,4 @@
-- name: Generate Machine Set for RAG-LLM Pattern
+- name: Generate Machine Set for EDB-AIDB Pattern
   hosts: localhost
   connection: local
   gather_facts: false

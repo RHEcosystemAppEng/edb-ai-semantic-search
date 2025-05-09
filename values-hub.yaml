@@ -10,7 +10,7 @@ clusterGroup:
     - redhat-ods-operator:
         operatorGroup: true
         targetNamespaces: []
-    - edb-ai-symantic-search:
+    - edb-ai-semantic-search:
         labels:
           opendatahub.io/dashboard: "true"
           modelmesh-enabled: 'false'
@@ -19,7 +19,7 @@ clusterGroup:
         targetNamespaces: []
   subscriptions:
     # Don't install RHOAI via validated patterns
-    # RHOAI must be installed after service mesh and other dependencies are installed or it will break. 
+    # RHOAI must be installed after service mesh and other dependencies are installed or it will break.
     # The RHOAI Application will install the operator after a validation check has passed
     nfd:
       name: nfd
@@ -51,15 +51,13 @@ clusterGroup:
       sourceNamespace: openshift-marketplace
   projects:
     - hub
-    - edb-ai-symantic-search
-    - llm-monitoring
     - gpu-config
     - openshift-ai
   # Explicitly mention the cluster-state based overrides we plan to use for this pattern.
   # We can use self-referential variables because the chart calls the tpl function with these variables defined
   sharedValueFiles:
     - '/overrides/values-{{ $.Values.global.clusterPlatform }}.yaml'
-    - 'values-rag-llm-gitops.yaml'
+    - 'values-edb-aidb-gitops.yaml'
   # sharedValueFiles is a flexible mechanism that will add the listed valuefiles to every app defined in the
   # applications section. We intend this to supplement and possibly even replace previous "magic" mechanisms, though
   # we do not at present have a target date for removal.
@@ -91,29 +89,9 @@ clusterGroup:
       chartVersion: 0.1.*
     minio:
       name: minio
-      namespace: edb-ai-symantic-search
+      namespace: edb-ai-semantic-search
       project: hub
       path: charts/all/minio
-    llm-serving-service:
-      name: llm-serving-service
-      namespace: edb-ai-symantic-search
-      project: hub
-      path: charts/all/llm-serving-service
-      syncPolicy:
-        automated: {}
-        retry:
-          limit: 50
-    edb-ai-symantic-search:
-      name: edb-ai-symantic-search
-      namespace: edb-ai-symantic-search
-      project: edb-ai-symantic-search
-      path: charts/all/rag-llm
-    llm-monitoring:
-      name: llm-monitoring
-      namespace: llm-monitoring
-      project: llm-monitoring
-      kustomize: true
-      path: charts/all/llm-monitoring/kustomize/overlays/dev
 
     nfd-config:
       name: nfd-config
